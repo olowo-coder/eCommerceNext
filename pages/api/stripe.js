@@ -10,6 +10,7 @@ export default async function handler(req, res) {
         console.log("test",req.body);
     try {
       // Create Checkout Sessions from body params.
+    //   console.log(req.body.image[0].asset._ref);
       const params = {
         submit_type: "pay",
         payment_method_types: ["card"],
@@ -20,7 +21,7 @@ export default async function handler(req, res) {
         ],
         line_items: req.body.map((item) => {
             const img = item.image[0].asset._ref;
-            const newImage = img.replace("image", "https://cdn.sanity.io/images/19hrkhwg/production/").replace("-webp", ".webp");
+            const newImage = img.replace("image-", "https://cdn.sanity.io/images/19hrkhwg/production/").replace("-webp", ".webp");
             console.log("IMAGE", newImage);
 
             return{
